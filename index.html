@@ -240,28 +240,6 @@
                     At $BROKE, we don’t ask: "Are you rich?" We ask: "How early are you?" 👀
                 </p>
 
-                <!-- Countdown Timer -->
-                <div class="mb-8 p-6 glass rounded-[2rem] border border-[#DCA52E]/30 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
-                    <p class="text-xs font-bold tracking-widest text-[#DCA52E] uppercase mb-3">🕒 EXPECTED LAUNCH COUNTDOWN</p>
-                    <div id="countdown" class="flex justify-center lg:justify-start gap-6 items-center">
-                        <div class="flex flex-col items-center">
-                            <span id="countdown-hours" class="text-4xl md:text-5xl font-meme text-white">00</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Hours</span>
-                        </div>
-                        <div class="text-3xl font-meme text-[#DCA52E]">:</div>
-                        <div class="flex flex-col items-center">
-                            <span id="countdown-minutes" class="text-4xl md:text-5xl font-meme text-white">00</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Minutes</span>
-                        </div>
-                        <div class="text-3xl font-meme text-[#DCA52E]">:</div>
-                        <div class="flex flex-col items-center">
-                            <span id="countdown-seconds" class="text-4xl md:text-5xl font-meme text-white">00</span>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Seconds</span>
-                        </div>
-                    </div>
-                    <p id="countdown-live" class="hidden text-lg font-meme text-[#DCA52E] animate-pulse mt-4 uppercase">🚀 TOKEN IS LIVE!</p>
-                </div>
-
                 <div class="flex flex-wrap justify-center lg:justify-start gap-4">
                     <a href="https://t.me/BrokeOnChain" target="_blank" onclick="alert('Token has not launched yet! Join Telegram for the official launch announcement.');">
                         <button
@@ -837,38 +815,6 @@
                 gsap.from("section", { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power4.out" });
             }, 2000);
 
-            // Countdown Timer Logic
-            function initCountdown() {
-                const targetDate = new Date('2026-06-01T19:00:00+04:00').getTime();
-                
-                function updateTimer() {
-                    const now = new Date().getTime();
-                    const difference = targetDate - now;
-                    
-                    if (difference <= 0) {
-                        document.getElementById('countdown-hours').innerText = '00';
-                        document.getElementById('countdown-minutes').innerText = '00';
-                        document.getElementById('countdown-seconds').innerText = '00';
-                        const liveText = document.getElementById('countdown-live');
-                        if (liveText) liveText.classList.remove('hidden');
-                        const overlay = document.getElementById('chart-overlay');
-                        if (overlay) overlay.classList.add('hidden');
-                        return;
-                    }
-                    
-                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                    
-                    document.getElementById('countdown-hours').innerText = String(hours).padStart(2, '0');
-                    document.getElementById('countdown-minutes').innerText = String(minutes).padStart(2, '0');
-                    document.getElementById('countdown-seconds').innerText = String(seconds).padStart(2, '0');
-                }
-                
-                updateTimer();
-                setInterval(updateTimer, 1000);
-            }
-            initCountdown();
         });
 
         // Mobile Menu Logic

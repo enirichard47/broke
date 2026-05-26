@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>$BROKE | Most Financially Unstable Future Millionaires</title>
+    <meta name="description" content="Welcome to the home of $BROKE: Current balance $0.63, Dreams $63,000,000. Join the most financially unstable future millionaires on Solana.">
+    <link rel="icon" type="image/png" href="images/broke.jpg">
+    <link rel="apple-touch-icon" href="images/broke.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <!-- Swiper CSS & JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #DCA52E;
+            --secondary: #1B2A4A;
+            --accent: #DE3B3B;
+            --dark: #07090E;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-meme {
+            font-family: 'Bungee', cursive;
+        }
+
+        /* Core Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(220, 165, 46, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(220, 165, 46, 0.6);
+            }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        .bg-meme-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Lightbox logic */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Nav Link Effects */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .bg-dark {
+            background-color: #0D0D0D !important;
+        }
+
+        [data-typewriter] {
+            white-space: pre-wrap;
+            display: inline-block;
+            min-height: 1.5em;
+        }
+    </style>
+</head>
+
+<body class="selection:bg-[#DCA52E] selection:text-white overflow-x-hidden relative min-h-screen w-full">
+
+    <!-- Preloader -->
+    <div id="preloader"
+        class="fixed inset-0 bg-[#07090E] z-[100] flex flex-col items-center justify-center transition-all duration-1000 ease-in-out">
+        <div class="relative flex items-center justify-center mb-8">
+            <!-- Elegant SVG Ring -->
+            <svg class="w-48 h-48 animate-[spin_4s_linear_infinite]" viewBox="0 0 100 100">
+                <circle class="text-white/5" stroke-width="2" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50" />
+                <circle class="text-[#DCA52E] transition-all duration-500 ease-out" stroke-width="2" 
+                    stroke-dasharray="283" stroke-dashoffset="70" stroke-linecap="round" stroke="currentColor" 
+                    fill="transparent" r="45" cx="50" cy="50" />
+            </svg>
+            <img src="images/broke.jpg" alt="Loading"
+                class="absolute w-32 h-32 rounded-full border-2 border-white/10 shadow-[0_0_50px_rgba(220,165,46,0.3)]">
+        </div>
+        <div class="overflow-hidden">
+            <h2 id="preloader-text"
+                class="text-sm sm:text-base font-bold text-white tracking-[0.5em] uppercase text-center px-4 opacity-0 transform translate-y-4">
+                Checking balance: $0.63...</h2>
+        </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-3xl px-6 py-4">
+            <div class="flex items-center gap-3">
+                <img src="images/broke.jpg" alt="$BROKE Logo"
+                    class="w-12 h-12 rounded-full border-2 border-[#DCA52E] shadow-[0_0_15px_rgba(220,165,46,0.5)]">
+                <span class="text-2xl font-meme tracking-tighter hidden md:block uppercase text-[#DCA52E]">$BROKE</span>
+            </div>
+            <div class="hidden lg:flex gap-6 font-bold uppercase text-xs tracking-widest">
+                <a href="#about" class="nav-link text-white hover:text-[#DCA52E] transition-colors">Trenches</a>
+                <a href="#chart" class="nav-link text-white hover:text-[#DCA52E] transition-colors">Ticker</a>
+                <a href="#mechanics" class="nav-link text-white hover:text-[#DCA52E] transition-colors">Broke Mode</a>
+                <a href="#buy" class="nav-link text-white hover:text-[#DCA52E] transition-colors">Get Broke</a>
+                <a href="#roadmap" class="nav-link text-white hover:text-[#DCA52E] transition-colors">The Ledger</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="https://t.me/BrokeOnChain" target="_blank" onclick="alert('Token launching soon! Join Telegram for the official launch announcement and link.');"
+                    class="bg-meme-gradient px-6 py-2 rounded-full font-meme text-sm hover:scale-105 transition-transform shadow-xl hidden sm:block">
+                    JOIN THE BROKE ARMY
+                </a>
+                <!-- Hamburger Button -->
+                <button id="mobile-menu-btn"
+                    class="lg:hidden text-white hover:text-[#DCA52E] focus:outline-none p-2 rounded-lg bg-white/10 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-black/95 z-[100] hidden flex-col items-center justify-center gap-8 backdrop-blur-xl transition-opacity opacity-0">
+        <button id="mobile-menu-close"
+            class="absolute top-8 right-8 text-white hover:text-[#DCA52E] bg-white/10 p-3 rounded-full transition-all hover:scale-110">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <a href="#about"
+            class="mobile-nav-link text-3xl font-meme text-white hover:text-[#DCA52E] transition-colors uppercase">Trenches</a>
+        <a href="#chart"
+            class="mobile-nav-link text-3xl font-meme text-white hover:text-[#DCA52E] transition-colors uppercase">Ticker</a>
+        <a href="#mechanics"
+            class="mobile-nav-link text-3xl font-meme text-white hover:text-[#DCA52E] transition-colors uppercase">Broke Mode</a>
+        <a href="#buy"
+            class="mobile-nav-link text-3xl font-meme text-white hover:text-[#DCA52E] transition-colors uppercase">Get Broke</a>
+        <a href="#roadmap"
+            class="mobile-nav-link text-3xl font-meme text-white hover:text-[#DCA52E] transition-colors uppercase">The Ledger</a>
+        <a href="https://t.me/BrokeOnChain" target="_blank" onclick="alert('Token launching soon! Join Telegram for the official launch announcement and link.');"
+            class="bg-meme-gradient px-8 py-4 rounded-full font-meme text-xl shadow-xl mt-4 text-center hover:scale-105 transition-transform">
+            JOIN THE BROKE ARMY
+        </a>
+    </div>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-40">
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#DCA52E]/10 via-transparent to-transparent">
+        </div>
+
+        <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center z-10">
+            <div class="text-center lg:text-left">
+                <div
+                    class="inline-block bg-white/10 px-4 py-1 rounded-full text-[#DCA52E] font-bold text-sm mb-6 border border-[#DCA52E]/30 uppercase tracking-[0.2em]">
+                    💰 BALANCE: $0.63 | DREAMS: $63,000,000
+                </div>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-meme leading-none mb-6 break-words"
+                    style="word-break: break-word;">
+                    $<span class="text-[#DCA52E]">BROKE</span><br><span class="text-[#F5C443]">CHILLIN</span>
+                </h1>
+                <p
+                    class="text-lg md:text-xl font-medium text-gray-300 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed shadow-sm drop-shadow-md text-center lg:text-left">
+                    <span class="block mb-4 text-white font-bold text-2xl md:text-3xl tracking-tight">You’re now part of the most financially unstable future millionaires. 🤝</span>
+                    <span class="opacity-90 block mb-4 border-l-4 border-[#DCA52E] pl-4 py-1 text-left italic">Some joined crypto for quick flips. We stayed through every dip, every rug, every "bro trust me" call... and somehow we're still here.</span>
+                    At $BROKE, we don’t ask: "Are you rich?" We ask: "How early are you?" 👀
+                </p>
+
+                <!-- Countdown Timer -->
+                <div class="mb-8 p-6 glass rounded-[2rem] border border-[#DCA52E]/30 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+                    <p class="text-xs font-bold tracking-widest text-[#DCA52E] uppercase mb-3">🕒 EXPECTED LAUNCH COUNTDOWN</p>
+                    <div id="countdown" class="flex justify-center lg:justify-start gap-6 items-center">
+                        <div class="flex flex-col items-center">
+                            <span id="countdown-hours" class="text-4xl md:text-5xl font-meme text-white">00</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Hours</span>
+                        </div>
+                        <div class="text-3xl font-meme text-[#DCA52E]">:</div>
+                        <div class="flex flex-col items-center">
+                            <span id="countdown-minutes" class="text-4xl md:text-5xl font-meme text-white">00</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Minutes</span>
+                        </div>
+                        <div class="text-3xl font-meme text-[#DCA52E]">:</div>
+                        <div class="flex flex-col items-center">
+                            <span id="countdown-seconds" class="text-4xl md:text-5xl font-meme text-white">00</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-400 mt-1">Seconds</span>
+                        </div>
+                    </div>
+                    <p id="countdown-live" class="hidden text-lg font-meme text-[#DCA52E] animate-pulse mt-4 uppercase">🚀 TOKEN IS LIVE!</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                    <a href="https://t.me/BrokeOnChain" target="_blank" onclick="alert('Token has not launched yet! Join Telegram for the official launch announcement.');">
+                        <button
+                            class="bg-[#DCA52E] text-white px-10 py-5 rounded-2xl font-meme text-xl hover:bg-white hover:text-black transition-all transform hover:-rotate-1 pulse-glow">GET
+                            $BROKE</button>
+                    </a>
+                    <button onclick="document.getElementById('chart').scrollIntoView({behavior: 'smooth'})"
+                        class="glass px-10 py-5 rounded-2xl font-meme text-xl hover:bg-white/10 transition-all transform hover:rotate-1">VIEW
+                        TICKER</button>
+                </div>
+                <div class="mt-8 flex flex-col items-center lg:items-start group max-w-full">
+                    <p class="text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest text-shadow">Official Contract Address (Click to Copy)</p>
+                    <pre class="bg-black/50 p-3 md:p-4 rounded-xl text-[#DCA52E] font-bold border border-[#DCA52E]/30 break-all whitespace-pre-wrap text-[0.65rem] md:text-base text-center select-all cursor-pointer hover:bg-[#DCA52E] hover:text-black transition-colors w-full animate-pulse"
+                        onclick="navigator.clipboard.writeText('TO BE ANNOUNCED'); alert('Contract Address is TBA! Launching soon. Join Telegram to get notified.');">TO BE ANNOUNCED</pre>
+                </div>
+            </div>
+            <div class="relative mt-12 lg:mt-0">
+                <div
+                    class="relative w-full aspect-square rotate-3 float overflow-hidden flex items-center justify-center filter drop-shadow-[0_0_40px_rgba(220,165,46,0.4)] bg-black/20 rounded-[4rem]">
+                    <img src="images/hero.png" alt="$BROKE Hero" class="object-cover w-full h-full rounded-[4rem] border-8 border-white/10">
+                </div>
+                <div
+                    class="absolute -top-10 right-0 sm:-right-10 bg-[#DCA52E] text-white px-4 py-3 sm:px-6 sm:py-4 rounded-3xl font-meme -rotate-12 shadow-2xl text-xl sm:text-2xl z-20 border-2 border-[#F5C443]">
+                    BROKE BOY</div>
+                <div
+                    class="absolute -bottom-6 left-0 sm:-left-6 bg-[#1B2A4A] text-white px-4 py-3 sm:px-6 sm:py-4 rounded-3xl font-meme rotate-6 shadow-2xl text-lg sm:text-xl z-20 border border-white/10">
+                    $0.63 BALANCE 💸</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT / LORE -->
+    <section id="about" class="py-24 bg-white text-black relative overflow-hidden">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-8 text-center md:text-left">
+                <h2 class="text-4xl sm:text-5xl md:text-7xl font-meme leading-tight break-words">LOST IN THE<br
+                        class="md:hidden"> <span class="text-[#DCA52E]">SOLANA TRENCHES?</span></h2>
+                <p class="text-xl font-medium opacity-80 leading-relaxed">
+                    Some joined crypto for quick flips. We stayed through every dip, every rug, every "bro trust me" call... and somehow we're still here.
+                    <br><br>
+                    Welcome to the home of wallets crying, delusion at all-time highs, Lambos loading since 2021, and instant noodles funded by "next pump for sure". We're not crying, we're just vibing.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-100 p-6 rounded-3xl text-center border-2 border-black text-black">
+                        <div class="text-4xl mb-2">📉</div>
+                        <div class="font-meme text-sm md:text-base">WALLETS CRYING</div>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-3xl text-center border-2 border-black text-black">
+                        <div class="text-4xl mb-2">📈</div>
+                        <div class="font-meme text-sm md:text-base">DELUSION HIGHS</div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="flex flex-col sm:flex-row gap-8 sm:gap-4 py-8 px-4 justify-center items-center">
+                    <div
+                        class="w-full sm:min-w-[280px] sm:max-w-xs bg-black text-white p-8 rounded-[2rem] sm:-rotate-2 border border-white/10 shadow-2xl relative overflow-hidden group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#DCA52E]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="text-4xl mb-4 text-[#DCA52E]">💰</div>
+                        <h4 class="font-meme text-xl mb-2 text-[#DCA52E]">BROKE TODAY</h4>
+                        <p class="text-sm opacity-70 relative z-10 transition-colors group-hover:text-white">Empty wallet, pure peace. The ultimate mental edge in a market full of anxiety. Current balance: $0.63.
+                        </p>
+                    </div>
+                    <div
+                        class="w-full sm:min-w-[280px] sm:max-w-xs bg-[#DCA52E] text-white p-8 rounded-[2rem] sm:rotate-3 shadow-2xl relative overflow-hidden group hover:scale-105 transition-transform">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-tl from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="text-4xl mb-4 relative z-10">🚀</div>
+                        <h4 class="font-meme text-xl mb-2 relative z-10 text-white">LEGENDARY TOMORROW</h4>
+                        <p class="text-sm font-medium relative z-10">Our dreams are worth $63,000,000. We hold because we have nothing left to lose. Welcome home to $BROKE.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. LIVE CHART & STAT SHAPES -->
+    <section id="chart" class="py-24 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-8xl font-meme mb-4">THE TICKER</h2>
+                <p class="text-xl font-bold opacity-90 uppercase tracking-widest text-[#DCA52E]">Tracking the chill in real-time
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-4 gap-6 mb-12">
+                <div class="glass p-8 rounded-3xl border-b-4 border-[#DCA52E] hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-tighter opacity-50 mb-2">Market Cap</p>
+                    <h3 id="stat-mcap" class="text-3xl font-meme text-[#DCA52E]">Loading...</h3>
+                </div>
+                <div class="glass p-8 rounded-3xl border-b-4 border-[#F5C443] hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-tighter opacity-50 mb-2">Price (USD)</p>
+                    <h3 id="stat-price" class="text-2xl font-meme text-[#F5C443]">Loading...</h3>
+                </div>
+                <div class="glass p-8 rounded-3xl border-b-4 border-[#DCA52E] hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-tighter opacity-50 mb-2">Liquidity</p>
+                    <h3 id="stat-liquidity" class="text-2xl font-meme text-[#DCA52E]">Loading...</h3>
+                </div>
+                <div class="glass p-8 rounded-3xl border-b-4 border-[#F5C443] hover:scale-105 transition-transform">
+                    <p class="text-xs uppercase tracking-tighter opacity-50 mb-2">24h Volume</p>
+                    <h3 id="stat-volume" class="text-2xl font-meme text-[#F5C443]">Loading...</h3>
+                </div>
+            </div>
+
+            <div class="glass rounded-[3rem] p-4 h-[600px] overflow-hidden border-2 border-white/10 shadow-2xl relative">
+                <div id="chart-overlay" class="absolute inset-0 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center text-center p-8 z-10 rounded-[3rem]">
+                        <span class="text-6xl mb-4">📊</span>
+                        <h3 class="text-3xl font-meme text-[#DCA52E] mb-2">CHART LAUNCHING SOON</h3>
+                        <p class="text-white/80 max-w-md font-bold uppercase tracking-widest text-sm">Official DexScreener chart will load automatically upon token launch! Join Telegram for official links.</p>
+                    </div>
+                    <iframe
+                        src="https://dexscreener.com/solana?embed=1&theme=dark"
+                        class="w-full h-full rounded-[2rem]" frameborder="0">
+                    </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TOKEN / MECHANICS -->
+    <section id="mechanics" class="py-24 bg-meme-gradient text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl md:text-8xl font-meme mb-4">THE BROKE WAY</h2>
+                <p class="text-xl font-bold opacity-90 uppercase tracking-widest">How we survive and stay bullish in the trenches
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div
+                    class="glass bg-black/60 p-8 rounded-3xl backdrop-blur-md border-[1px] border-white/20 hover:border-[#DCA52E] hover:bg-black/80 hover:shadow-[0_0_30px_rgba(220,165,46,0.4)] transition-colors transition-shadow duration-300 text-center group">
+                    <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💥</div>
+                        <h4 class="font-meme text-xl mb-2 text-[#DCA52E]">POST MEMES</h4>
+                        <p class="text-sm opacity-90">Make the pain funny. The market can rug our wallets, but it can't rug our sense of humor.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass bg-black/60 p-8 rounded-3xl backdrop-blur-md border-[1px] border-white/20 hover:border-[#F5C443] hover:bg-black/80 hover:shadow-[0_0_30px_rgba(245,196,67,0.4)] transition-colors transition-shadow duration-300 text-center group">
+                    <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💥</div>
+                        <h4 class="font-meme text-xl mb-2 text-[#F5C443]">STAY BULLISH</h4>
+                        <p class="text-sm opacity-90">Delusion is our superpower. When the portfolio hits $0.63, the only direction left is up.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass bg-black/60 p-8 rounded-3xl backdrop-blur-md border-[1px] border-white/20 hover:border-[#DCA52E] hover:bg-black/80 hover:shadow-[0_0_30px_rgba(220,165,46,0.4)] transition-colors transition-shadow duration-300 text-center group">
+                    <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">💥</div>
+                        <h4 class="font-meme text-xl mb-2 text-[#DCA52E]">LOAD THE LAMBO</h4>
+                        <p class="text-sm opacity-90">Lambos have been loading since 2021. One day we will finally check out our online cart.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass bg-black/60 p-8 rounded-3xl backdrop-blur-md border-[1px] border-white/20 hover:border-[#F5C443] hover:bg-black/80 hover:shadow-[0_0_30px_rgba(245,196,67,0.4)] transition-colors transition-shadow duration-300 text-center group">
+                    <div class="transform transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🤝</div>
+                        <h4 class="font-meme text-xl mb-2 text-[#F5C443]">WELCOME HOME</h4>
+                        <p class="text-sm opacity-90">You are now part of the most financially unstable future millionaires on the internet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SHOWCASE (PREMIUM CAROUSEL) -->
+    <section class="py-32 bg-dark relative overflow-hidden" id="gallery">
+        <!-- Dynamic Background Layer -->
+        <div class="absolute inset-0 opacity-20 z-0">
+            <img src="images/broke.jpg" class="w-full h-full object-cover blur-sm scale-110" alt="">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark via-transparent to-dark"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-24">
+                <div class="inline-block px-4 py-1 rounded-full border border-[#DCA52E]/30 bg-[#DCA52E]/10 text-[#DCA52E] text-xs font-bold tracking-[0.3em] uppercase mb-4">
+                    Broke Boy Gallery
+                </div>
+                <h2 class="text-5xl md:text-7xl font-meme text-white tracking-widest uppercase mb-6">
+                    <span class="text-[#F5C443]">$BROKE</span> GALLERY
+                </h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-[#DCA52E] to-transparent mx-auto"></div>
+            </div>
+        </div>
+
+        <!-- Standardized Showcase Slider -->
+        <div class="showcase-outer w-full overflow-hidden pb-32">
+            <div class="swiper showcase-swiper relative">
+                <div class="swiper-wrapper items-center">
+                <!-- Card 1 -->
+                <div class="swiper-slide w-[85vw] md:w-[600px]">
+                    <div class="showcase-card relative h-[400px] md:h-[550px] rounded-[3rem] overflow-hidden group border border-white/10 glass transition-all duration-700">
+                        <img src="images/meme1.png" class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="text-3xl font-meme text-white mb-2 uppercase">No Money = No Problems</h4>
+                            <p class="text-[#DCA52E] font-bold tracking-widest text-sm uppercase mb-4">BALANCE: $0.63</p>
+                            <div class="h-0.5 w-0 group-hover:w-32 bg-[#DCA52E] transition-all duration-700"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="swiper-slide w-[85vw] md:w-[600px]">
+                    <div class="showcase-card relative h-[400px] md:h-[550px] rounded-[3rem] overflow-hidden group border border-white/10 glass transition-all duration-700">
+                        <img src="images/meme2.png" class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="text-3xl font-meme text-white mb-2 uppercase">Cardboard Lambo</h4>
+                            <p class="text-[#F5C443] font-bold tracking-widest text-sm uppercase mb-4">LOADING SINCE 2021</p>
+                            <div class="h-0.5 w-0 group-hover:w-32 bg-[#F5C443] transition-all duration-700"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="swiper-slide w-[85vw] md:w-[600px]">
+                    <div class="showcase-card relative h-[400px] md:h-[550px] rounded-[3rem] overflow-hidden group border border-white/10 glass transition-all duration-700">
+                        <img src="images/meme3.png" class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" alt="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#000000] via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-8 md:p-12 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                            <h4 class="text-3xl font-meme text-white mb-2 uppercase">Delusion at All-Time Highs</h4>
+                            <p class="text-[#DCA52E] font-bold tracking-widest text-sm uppercase mb-4">DREAMS: $63,000,000</p>
+                            <div class="h-0.5 w-0 group-hover:w-32 bg-[#DCA52E] transition-all duration-700"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Custom Controls Wrapped in Container -->
+        <div class="container mx-auto px-4 -mt-12 mb-12 relative z-20">
+            <div class="flex items-center justify-center gap-12">
+                <div class="showcase-prev w-16 h-16 rounded-full border border-white/20 flex items-center justify-center cursor-pointer transition-all hover:bg-[#DCA52E] hover:text-white hover:border-transparent group">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transition-transform group-hover:-translate-x-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                    </svg>
+                </div>
+                <div class="showcase-pagination !w-auto bottom-auto relative"></div>
+                <div class="showcase-next w-16 h-16 rounded-full border border-white/20 flex items-center justify-center cursor-pointer transition-all hover:bg-[#DCA52E] hover:text-white hover:border-transparent group">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 transition-transform group-hover:translate-x-1">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+            .showcase-swiper {
+                overflow: visible !important;
+            }
+            .showcase-card {
+                transform: scale(0.85);
+                opacity: 0.3;
+                transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+            }
+            .swiper-slide-active .showcase-card {
+                transform: scale(1);
+                opacity: 1;
+                filter: none;
+                box-shadow: 0 0 50px rgba(220, 165, 46, 0.2);
+            }
+            .showcase-pagination .swiper-pagination-bullet {
+                background: white !important;
+                opacity: 0.2;
+                width: 10px;
+                height: 10px;
+                margin: 0 12px !important;
+                transition: all 0.4s ease;
+            }
+            .showcase-pagination .swiper-pagination-bullet-active {
+                opacity: 1;
+                background: #DCA52E !important;
+                width: 45px;
+                border-radius: 5px;
+                box-shadow: 0 0 20px #DCA52E;
+            }
+        </style>
+    </section>
+
+    <!-- 6. ROADMAP -->
+    <section id="roadmap" class="py-24 bg-dark">
+        <div class="container mx-auto px-4">
+            <h2 class="text-6xl font-meme text-center mb-20">THE <span class="text-[#F5C443]">LEDGER</span>
+            </h2>
+            <div class="flex flex-col gap-12 max-w-5xl mx-auto">
+                <div
+                    class="glass rounded-[3rem] border-l-8 border-[#DCA52E] hover:shadow-[0_0_40px_rgba(220,165,46,0.3)] transition-shadow duration-300 group">
+                    <div
+                        class="flex flex-col md:flex-row gap-8 items-center p-10 transform transition-transform duration-300 hover:-translate-y-2">
+                        <div
+                            class="text-7xl group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+                            📟</div>
+                        <div>
+                            <h3 class="text-3xl font-meme mb-2 text-[#DCA52E]">PHASE 1: TRENCH WARMUP</h3>
+                            <p
+                                class="text-lg text-white/80 italic group-hover:text-white transition-colors duration-300">
+                                Launch countdown, build the Telegram army, and gather the most financially unstable future millionaires.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="glass rounded-[3rem] border-l-8 border-[#F5C443] ml-0 md:ml-12 hover:shadow-[0_0_40px_rgba(245,196,67,0.3)] transition-shadow duration-300 group">
+                    <div
+                        class="flex flex-col md:flex-row gap-8 items-center p-10 transform transition-transform duration-300 hover:-translate-y-2">
+                        <div
+                            class="text-7xl group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+                            🏎️</div>
+                        <div>
+                            <h3 class="text-3xl font-meme mb-2 text-[#F5C443]">PHASE 2: CARDBOARD LAMBO</h3>
+                            <p
+                                class="text-lg text-white/80 italic group-hover:text-white transition-colors duration-300">
+                                Launch the token, distribute the CA, lock liquidity, and post cardboard Lambo memes non-stop.</p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="glass rounded-[3rem] border-l-8 border-[#DCA52E] ml-0 md:ml-24 hover:shadow-[0_0_40px_rgba(220,165,46,0.3)] transition-shadow duration-300 group">
+                    <div
+                        class="flex flex-col md:flex-row gap-8 items-center p-10 transform transition-transform duration-300 hover:-translate-y-2">
+                        <div
+                            class="text-7xl group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300">
+                            🚀</div>
+                        <div>
+                            <h3 class="text-3xl font-meme mb-2 text-[#DCA52E]">PHASE 3: MILLIONAIRE DELUSION</h3>
+                            <p
+                                class="text-lg text-white/80 italic group-hover:text-white transition-colors duration-300">
+                                Surpass stressed-out coins, reach the $63,000,000 dream balance, and check out the Lambo cart.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SOCIAL PROOF SATIRE -->
+    <section class="py-24 bg-[#DCA52E] text-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-meme text-center mb-12 uppercase">THE BROKE MANIFESTO</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div
+                    class="bg-black p-8 rounded-2xl border-4 border-white rotate-1 hover:-translate-y-3 hover:rotate-0 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all duration-300 group">
+                    <h4 class="text-xl font-black mb-4 uppercase group-hover:text-[#DCA52E] transition-colors">UNSTOPPABLE DELUSION</h4>
+                    <p class="text-sm font-bold opacity-60 md:opacity-100 md:text-gray-300">We stayed through every dip, every rug, and every "bro trust me" call. If we're still here, nothing can stop us.</p>
+                </div>
+                <div
+                    class="bg-black p-8 rounded-2xl border-4 border-white -rotate-1 hover:-translate-y-3 hover:rotate-0 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all duration-300 group">
+                    <h4 class="text-xl font-black mb-4 uppercase group-hover:text-[#DCA52E] transition-colors">
+                        ZEN BALANCE</h4>
+                    <p class="text-sm font-bold opacity-60 md:opacity-100 md:text-gray-300">With a balance of $0.63, there is nothing left to lose. You sleep like a baby. FUD has no power over us.</p>
+                </div>
+                <div
+                    class="bg-black p-8 rounded-2xl border-4 border-white rotate-2 hover:-translate-y-3 hover:rotate-0 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all duration-300 group">
+                    <h4 class="text-xl font-black mb-4 uppercase group-hover:text-[#DCA52E] transition-colors">FUTURE MILLIONAIRES
+                    </h4>
+                    <p class="text-sm font-bold opacity-60 md:opacity-100 md:text-gray-300">We aren't broke, we are just extremely early. The next pump is going to fund our dreams of $63,000,000.</p>
+                </div>
+            </div>
+            <p class="text-center mt-10 text-xs font-bold opacity-50 uppercase tracking-widest">OBSERVED AND CLIPPED SINCE INCEPTION</p>
+        </div>
+    </section>
+
+    <section id="buy" class="py-24 bg-dark">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-5xl font-meme text-center mb-16 underline decoration-[#F5C443]">GET BROKE ($BROKE)</h2>
+            <div class="space-y-6">
+                <!-- Contract Address Box -->
+                <div
+                    class="glass flex flex-col items-center justify-center border-[#DCA52E] p-8 rounded-3xl mb-8 group hover:shadow-[0_0_30px_rgba(220,165,46,0.3)] transition-shadow">
+                    <h4 class="text-2xl font-meme mb-3 text-[#DCA52E]">THE LEDGER</h4>
+                    <pre class="bg-black/50 p-4 rounded-xl text-[#DCA52E] font-bold break-all whitespace-pre-wrap text-center select-all cursor-pointer hover:bg-[#DCA52E] hover:text-black transition-colors"
+                        onclick="alert('Contract Address is TBA! Launching soon. Join Telegram for the official announcement!');">TO BE ANNOUNCED</pre>
+                    <p class="text-xs opacity-50 mt-3">(CA announced at launch)</p>
+                </div>
+
+                <div
+                    class="glass flex gap-6 items-start group hover:bg-white/5 hover:border-[#DCA52E] hover:shadow-[0_0_30px_rgba(220,165,46,0.2)] border border-white/5 transition-colors transition-shadow duration-300 p-8 rounded-3xl">
+                    <div
+                        class="bg-[#DCA52E] text-white w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center font-meme text-2xl group-hover:rotate-6 group-hover:scale-110 shadow-lg transition-transform duration-300">
+                        1</div>
+                    <div>
+                        <h4 class="text-2xl font-meme mb-2 group-hover:text-[#DCA52E] transition-colors duration-300">
+                            LOAD WALLET</h4>
+                        <p class="text-white/70 group-hover:text-white transition-colors duration-300">Get some SOL in Phantom or Solflare. Even a future millionaire needs a little gas money.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass flex gap-6 items-start group hover:bg-white/5 hover:border-[#F5C443] hover:shadow-[0_0_30px_rgba(245,196,67,0.2)] border border-white/5 transition-colors transition-shadow duration-300 p-8 rounded-3xl">
+                    <div
+                        class="bg-[#F5C443] text-white w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center font-meme text-2xl group-hover:-rotate-6 group-hover:scale-110 shadow-lg transition-transform duration-300">
+                        2</div>
+                    <div>
+                        <h4 class="text-2xl font-meme mb-2 group-hover:text-[#F5C443] transition-colors duration-300">
+                            WAIT FOR LAUNCH</h4>
+                        <p class="text-white/70 group-hover:text-white transition-colors duration-300">Stay glued to X and Telegram for the official launch link and CA announcement.</p>
+                    </div>
+                </div>
+                <div
+                    class="glass flex gap-6 items-start group hover:bg-white/5 hover:border-[#DCA52E] hover:shadow-[0_0_30px_rgba(220,165,46,0.2)] border border-white/5 transition-colors transition-shadow duration-300 p-8 rounded-3xl">
+                    <div
+                        class="bg-[#DCA52E] text-white w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center font-meme text-2xl group-hover:rotate-12 group-hover:scale-110 shadow-lg transition-transform duration-300">
+                        3</div>
+                    <div>
+                        <h4 class="text-2xl font-meme mb-2 group-hover:text-[#DCA52E] transition-colors duration-300">
+                            CHILL & HOLD</h4>
+                        <p class="text-white/70 group-hover:text-white transition-colors duration-300">Swap SOL for $BROKE, post memes, stay bullish, and keep loading that Lambo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. FAQ -->
+    <section class="py-24 bg-dark">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-4xl font-meme text-center mb-12 uppercase">TRENCH BRIEFING</h2>
+            <div class="space-y-4">
+                <details
+                    class="group glass rounded-[2rem] p-8 cursor-pointer open:bg-white open:text-black transition-colors duration-300">
+                    <summary class="font-meme text-xl flex justify-between items-center list-none">
+                        WHAT IS $BROKE?
+                        <span class="text-[#DCA52E] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 font-bold opacity-80"
+                        data-typewriter="BROKE is the official coin of the broke but chillin' community on Solana. We believe that having no money means having no problems.">
+                    </div>
+                </details>
+                <details
+                    class="group glass rounded-[2rem] p-8 cursor-pointer open:bg-white open:text-black transition-colors duration-300">
+                    <summary class="font-meme text-xl flex justify-between items-center list-none">
+                        WHY THE $0.63 BALANCE?
+                        <span class="text-[#DCA52E] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 font-bold opacity-80"
+                        data-typewriter="Because that's all we have left. But our dreams are worth $63,000,000, and that's what counts. We are future millionaires.">
+                    </div>
+                </details>
+                <details
+                    class="group glass rounded-[2rem] p-8 cursor-pointer open:bg-white open:text-black transition-colors duration-300">
+                    <summary class="font-meme text-xl flex justify-between items-center list-none">
+                        IS IT SAFE?
+                        <span class="text-[#F5C443] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 font-bold opacity-80"
+                        data-typewriter="Is being broke safe? No, but you can't fall off the floor! With $BROKE, you have nothing left to lose, making you invincible. DYOR, but stay bullish.">
+                    </div>
+                </details>
+                <details
+                    class="group glass rounded-[2rem] p-8 cursor-pointer open:bg-white open:text-black transition-colors duration-300">
+                    <summary class="font-meme text-xl flex justify-between items-center list-none">
+                        WHERE TO CHILL?
+                        <span class="text-[#F5C443] group-open:rotate-180 transition-transform">▼</span>
+                    </summary>
+                    <div class="mt-4 font-bold opacity-80"
+                        data-typewriter="Join our Telegram at t.me/BrokeOnChain and follow us on X at x.com/BrokeOnChain. That's where the Broke Boy Army gathers to stay bullish.">
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FINAL CTA STRIP -->
+    <section class="py-20 bg-black overflow-hidden relative border-t border-b border-[#DCA52E]/20">
+        <div class="absolute inset-0 opacity-10 animate-pulse bg-meme-gradient"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-5xl md:text-9xl font-meme mb-10 italic">BROKE TODAY. LEGENDARY TOMORROW.</h2>
+            <a href="https://t.me/BrokeOnChain" target="_blank" onclick="alert('Token launching soon! Join Telegram for the official launch announcement and link.');">
+                <button
+                    class="bg-white text-black px-16 py-8 rounded-[2rem] font-meme text-3xl hover:bg-[#DCA52E] hover:text-white hover:scale-110 transition-all shadow-[0_0_50px_rgba(220,165,46,0.4)]">
+                    JOIN THE BROKE ARMY
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- 11. FOOTER -->
+    <footer class="pt-24 pb-12 bg-dark border-t border-white/10 relative overflow-hidden">
+        <div
+            class="absolute -top-1/3 -left-1/3 w-[800px] h-[800px] bg-[#DCA52E]/05 rounded-full blur-[120px] pointer-events-none">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div
+                class="grid md:grid-cols-4 gap-12 text-center md:text-left items-center md:items-start border-b border-white/10 pb-12 mb-12">
+
+                <div class="md:col-span-1 flex flex-col items-center md:items-start">
+                    <img src="images/broke.jpg" alt="BROKE Footer Logo"
+                        class="w-24 h-24 rounded-full border border-[#DCA52E]/50 shadow-[0_0_25px_rgba(220,165,46,0.4)] mb-6 pulse-glow">
+                    <div
+                        class="text-4xl font-meme bg-clip-text text-transparent bg-gradient-to-r from-[#DCA52E] to-[#F5C443] mb-2">
+                        $BROKE</div>
+                    <p class="text-sm opacity-50 font-bold uppercase tracking-widest italic">FUTURE MILLIONAIRES
+                    </p>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5
+                        class="font-meme text-lg text-[#DCA52E] mb-6 underline underline-offset-8 decoration-[#DCA52E]/50">
+                        NAVIGATION</h5>
+                    <ul class="space-y-4 font-bold text-sm tracking-widest uppercase opacity-70">
+                        <li><a href="#about" class="hover:text-[#DCA52E] transition-colors">Trenches</a></li>
+                        <li><a href="#chart" class="hover:text-[#DCA52E] transition-colors">Ticker</a></li>
+                        <li><a href="#mechanics" class="hover:text-[#DCA52E] transition-colors">Broke Mode</a></li>
+                        <li><a href="#roadmap" class="hover:text-[#DCA52E] transition-colors">The Ledger</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5
+                        class="font-meme text-lg text-[#DCA52E] mb-6 underline underline-offset-8 decoration-[#DCA52E]/50">
+                        COMMS</h5>
+                    <div class="flex justify-center md:justify-start gap-6">
+                        <a href="https://t.me/BrokeOnChain" target="_blank"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-[#DCA52E] hover:text-white transition-all transform hover:scale-110 shadow-lg">
+                            <span class="text-xl">✈️</span>
+                        </a>
+                        <a href="https://x.com/BrokeOnChain" target="_blank"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-[#DCA52E] hover:text-white transition-all transform hover:scale-110 shadow-lg">
+                            <span class="text-xl">𝕏</span>
+                        </a>
+                        <a href="https://dexscreener.com/solana"
+                            target="_blank"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-[#DCA52E] hover:text-white transition-all transform hover:scale-110 shadow-lg">
+                            <span class="text-xl">📈</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5
+                        class="font-meme text-lg text-[#DCA52E] mb-6 underline underline-offset-8 decoration-[#DCA52E]/50">
+                        DISCLAIMER</h5>
+                    <p class="text-xs opacity-40 leading-relaxed uppercase border-l-2 border-[#DCA52E] pl-4">
+                        $BROKE is a meme coin celebrating the degen spirit of having a $0.63 balance and $63,000,000 dreams. No utility, no financial advice. If you lose your money, remember: no money = no problems.
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row justify-between items-center text-[10px] opacity-30 tracking-[0.5em] uppercase px-4 font-bold">
+                <p>2026 $BROKE BROKE OPERATIONS</p>
+                <p>STATUS: DELUSIONAL 🚀</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()" class="cursor-zoom-out backdrop-blur-md">
+        <div id="lightbox-content"
+            class="max-w-[90vw] max-h-[90vh] rounded-[2rem] overflow-hidden shadow-[0_0_100px_rgba(220,165,46,0.4)] border border-white/20 transform scale-90 transition-transform duration-300">
+            <img id="lightbox-img" src="" alt="Enlarged Archive" class="w-full h-full object-contain">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Preloader Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const preloaderText = document.getElementById('preloader-text');
+
+            // Animate text first
+            gsap.to(preloaderText, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power4.out"
+            });
+
+            // Fade out preloader
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                // Body reveal
+                gsap.from("nav", { y: -100, opacity: 0, duration: 1, ease: "power4.out" });
+                gsap.from("section", { opacity: 0, y: 50, duration: 1, stagger: 0.2, ease: "power4.out" });
+            }, 2000);
+
+            // Countdown Timer Logic
+            function initCountdown() {
+                const targetDate = new Date('2026-06-01T19:00:00+04:00').getTime();
+                
+                function updateTimer() {
+                    const now = new Date().getTime();
+                    const difference = targetDate - now;
+                    
+                    if (difference <= 0) {
+                        document.getElementById('countdown-hours').innerText = '00';
+                        document.getElementById('countdown-minutes').innerText = '00';
+                        document.getElementById('countdown-seconds').innerText = '00';
+                        const liveText = document.getElementById('countdown-live');
+                        if (liveText) liveText.classList.remove('hidden');
+                        const overlay = document.getElementById('chart-overlay');
+                        if (overlay) overlay.classList.add('hidden');
+                        return;
+                    }
+                    
+                    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('countdown-hours').innerText = String(hours).padStart(2, '0');
+                    document.getElementById('countdown-minutes').innerText = String(minutes).padStart(2, '0');
+                    document.getElementById('countdown-seconds').innerText = String(seconds).padStart(2, '0');
+                }
+                
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+            initCountdown();
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const menuClose = document.getElementById('mobile-menu-close');
+        const menu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMenu(show) {
+            if (show) {
+                menu.classList.remove('hidden');
+                setTimeout(() => {
+                    menu.classList.add('flex');
+                    menu.classList.remove('opacity-0');
+                    menu.classList.add('opacity-100');
+                }, 10);
+            } else {
+                menu.classList.remove('opacity-100');
+                menu.classList.add('opacity-0');
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                }, 500);
+            }
+        }
+
+        menuBtn.addEventListener('click', () => toggleMenu(true));
+        menuClose.addEventListener('click', () => toggleMenu(false));
+        menuLinks.forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+
+        // Swiper Initialization
+        const swiper = new Swiper('.showcase-swiper', {
+            slidesPerView: 'auto',
+            centeredSlides: true,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: '.showcase-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.showcase-next',
+                prevEl: '.showcase-prev',
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+        });
+
+        // Typewriter Effect for FAQ
+        const typewriters = document.querySelectorAll('[data-typewriter]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const text = entry.target.getAttribute('data-typewriter');
+                    entry.target.innerHTML = '';
+                    let i = 0;
+                    const interval = setInterval(() => {
+                        if (i < text.length) {
+                            entry.target.innerHTML += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(interval);
+                        }
+                    }, 20);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        typewriters.forEach(t => observer.observe(t));
+
+        // Lightbox Logic
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.style.display = 'flex';
+            setTimeout(() => lb.classList.add('opacity-100'), 10);
+        }
+
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.style.display = 'none';
+        }
+
+        // Fetch Live Stats from DexScreener (TBA pre-launch)
+        async function fetchStats() {
+            document.getElementById('stat-mcap').innerText = 'TBA';
+            document.getElementById('stat-price').innerText = 'TBA';
+            document.getElementById('stat-liquidity').innerText = 'TBA';
+            document.getElementById('stat-volume').innerText = 'TBA';
+        }
+        fetchStats();
+
+    </script>
+</body>
+
+</html>
